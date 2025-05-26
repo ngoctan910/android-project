@@ -4,7 +4,7 @@ import ngoctan.traininng.androidproject.BuildConfig
 import timber.log.Timber
 
 object Logger {
-    private const val TAG = "AndroidProject"
+    private const val TAG = "response"
 
     fun d(s: String?, vararg objects: Any?) {
         Timber.tag(TAG).d(s, *objects)

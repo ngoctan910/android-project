@@ -1,4 +1,4 @@
-package ngoctan.app.traininng.androidproject.ui.fragment
+package ngoctan.app.traininng.androidproject.ui.fragment.mars
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

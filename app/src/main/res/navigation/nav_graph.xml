@@ -3,11 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_mars_photo">
+    app:startDestination="@id/fragment_splash">
 
     <fragment
         android:id="@+id/fragment_mars_photo"
         tools:layout="@layout/fragment_mars_photo"
-        android:name="ngoctan.app.traininng.androidproject.ui.fragment.MarsPhotoFragment" />
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.mars.MarsPhotoFragment" />
 
+    <fragment
+        android:id="@+id/fragment_splash"
+        tools:layout="@layout/fragment_splash_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.spash.SplashKabarFragment">
+        <action
+            android:id="@+id/action_fragment_splash_to_fragment_onboarding1"
+            app:destination="@id/fragment_onboarding1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_onboarding1"
+        tools:layout="@layout/fragment_onboarding1_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.onboarding.OnBoarding1">
+        <action
+            android:id="@+id/action_fragment_onboarding1_to_fragment_onboarding2"
+            app:destination="@id/fragment_onboarding2"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_onboarding2"
+        tools:layout="@layout/fragment_onboarding2_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.onboarding.OnBoarding2">
+        <action
+            android:id="@+id/action_fragment_onboarding2_to_fragment_onboarding3"
+            app:destination="@id/fragment_onboarding3"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_onboarding3"
+        tools:layout="@layout/fragment_onboarding3_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.onboarding.OnBoarding3">
+        <action
+            android:id="@+id/action_fragment_onboarding3_to_fragment_login"
+            app:destination="@id/fragment_login"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_login"
+        tools:layout="@layout/fragment_login_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.login.LoginFragment">
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_select_country"
+            app:destination="@id/fragment_select_country" />
+
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_register"
+            app:destination="@id/fragment_register" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_register"
+        tools:layout="@layout/fragment_register_kabar"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.register.RegisterFragment">
+
+        <action
+            android:id="@+id/action_fragment_register_to_fragment_login"
+            app:destination="@id/fragment_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_select_country"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.select_country.SelectCountryFragment"
+        tools:layout="@layout/fragment_select_country" >
+        <action
+            android:id="@+id/action_fragment_select_country_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 </navigation>

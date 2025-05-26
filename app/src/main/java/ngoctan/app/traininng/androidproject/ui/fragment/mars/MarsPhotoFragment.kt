@@ -1,4 +1,4 @@
-package ngoctan.app.traininng.androidproject.ui.fragment
+package ngoctan.app.traininng.androidproject.ui.fragment.mars
 
 import android.os.Bundle
 import android.view.LayoutInflater

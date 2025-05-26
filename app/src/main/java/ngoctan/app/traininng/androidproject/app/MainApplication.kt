@@ -1,6 +1,7 @@
 package ngoctan.app.traininng.androidproject.app
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 import ngoctan.app.traininng.androidproject.util.extension.Logger
 
@@ -11,6 +12,7 @@ class MainApplication: Application() {
         instance = this
 
         Logger.init()
+        FirebaseApp.initializeApp(this)
     }
 
     companion object {
