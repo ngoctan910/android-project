@@ -2,6 +2,7 @@ package ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.spash
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,8 @@ class SplashKabarFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (isAdded)
             findNavController().navigate(R.id.action_fragment_splash_to_fragment_onboarding1)
         }, 2000)
     }

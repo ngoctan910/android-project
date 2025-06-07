@@ -86,6 +86,41 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.news.HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_trending_news"
+            app:destination="@id/fragment_trending_news" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_detail_news"
+            app:destination="@id/fragment_detail_news">
+
+            <argument
+                android:name="result"
+                app:argType="ngoctan.domain.model.news.Results" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_trending_news"
+        tools:layout="@layout/fragment_trending_news"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.trending_news.TrendingNewsFragment">
+        <action
+            android:id="@+id/action_fragment_trending_news_to_fragment_detail_news"
+            app:destination="@id/fragment_detail_news">
+            <argument
+                android:name="result"
+                app:argType="ngoctan.domain.model.news.Results" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_detail_news"
+        tools:layout="@layout/fragment_detail_news"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.news.DetailNewsFragment" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        tools:layout="@layout/fragment_profile"
+        android:name="ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.profile.ProfileFragment" />
 </navigation>

@@ -10,4 +10,8 @@
     <style name="rounded_corner">
         <item name="cornerSize">16%</item>
     </style>
+
+    <style name="rounded_corner_8">
+        <item name="cornerSize">8%</item>
+    </style>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_home"
+        android:title="Home"
+        android:icon="@drawable/home" />
+
+    <item
+        android:id="@+id/fragment_trending_news"
+        android:title="Trending"
+        android:icon="@drawable/explore_unclick" />
+
+    <item
+        android:id="@+id/fragment_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile_unclick" />
+
+</menu>

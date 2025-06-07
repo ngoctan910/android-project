@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import ngoctan.app.traininng.androidproject.app.MainApplication
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.FragmentLoginKabarBinding
 
@@ -30,6 +33,7 @@ class LoginFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        FirebaseApp.initializeApp(requireContext())
         binding.register.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_login_to_fragment_register)
         }
