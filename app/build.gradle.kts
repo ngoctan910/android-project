@@ -97,5 +97,5 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.analytics)
-//    implementation("com.google.android.gms:play-services-ads:24.3.0")
+    implementation(libs.play.services.ads)
 }

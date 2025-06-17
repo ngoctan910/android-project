@@ -2,13 +2,17 @@ package ngoctan.app.traininng.androidproject.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.window.OnBackInvokedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
 import dagger.hilt.android.AndroidEntryPoint
-import ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.news.HomeFragment
+import ngoctan.app.traininng.androidproject.ads.InterAdManager
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ActivityMainBinding
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpNavigation()
+        initMobileAds()
+        loadInterAd()
+    }
+
+    private fun initMobileAds() {
+        Thread {
+            MobileAds.initialize(this) { initializationStatus: InitializationStatus? -> }
+        }.start()
     }
 
     private fun setUpNavigation() {
@@ -35,5 +47,13 @@ class MainActivity : AppCompatActivity() {
                 else -> binding.bottomNavigation.visibility = View.GONE
             }
         }
+    }
+
+    private fun loadInterAd() {
+        InterAdManager.getInstance().loadInterAd()
+    }
+
+    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+        return super.getOnBackInvokedDispatcher()
     }
 }

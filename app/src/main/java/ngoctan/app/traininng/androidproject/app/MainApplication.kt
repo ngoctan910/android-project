@@ -1,6 +1,7 @@
 package ngoctan.app.traininng.androidproject.app
 
 import android.app.Application
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 import ngoctan.app.traininng.androidproject.util.extension.Logger
@@ -13,13 +14,14 @@ class MainApplication: Application() {
 
         Logger.init()
         FirebaseApp.initializeApp(this)
+        MobileAds.initialize(this) {}
     }
 
     companion object {
         private var instance: MainApplication? = null
 
         fun getInstance(): MainApplication {
-            if (instance != null) instance = MainApplication()
+            if (instance == null) instance = MainApplication()
             return instance!!
         }
     }

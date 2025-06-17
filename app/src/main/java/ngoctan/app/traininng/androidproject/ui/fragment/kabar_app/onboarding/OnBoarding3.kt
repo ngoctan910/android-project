@@ -29,7 +29,7 @@ class OnBoarding3: Fragment() {
         }
 
         binding.started.setOnClickListener {
-            findNavController().navigate(R.id.action_fragment_onboarding3_to_fragment_login)
+            findNavController().navigate(R.id.action_fragment_onboarding3_to_fragment_home)
         }
     }
 }
