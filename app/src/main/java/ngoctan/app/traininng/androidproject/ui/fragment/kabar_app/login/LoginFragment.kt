@@ -34,6 +34,12 @@ class LoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         FirebaseApp.initializeApp(requireContext())
+//        navigation()
+        initObserve()
+
+    }
+
+    private fun navigation() {
         binding.register.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_login_to_fragment_register)
         }
@@ -43,9 +49,6 @@ class LoginFragment: Fragment() {
             val edtPassword = binding.edtPassword.text.toString().trim()
             loginViewModel.login(edtUsername, edtPassword)
         }
-
-        initObserve()
-
     }
 
     fun initObserve() {

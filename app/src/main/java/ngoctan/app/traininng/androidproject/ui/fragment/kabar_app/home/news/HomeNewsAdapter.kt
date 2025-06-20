@@ -3,12 +3,18 @@ package ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.home.news
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.api.load
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
+import ngoctan.app.traininng.androidproject.util.extension.Logger
 import ngoctan.domain.model.news.Results
+import ngoctan.domain.model.news.ResultsType
 import ngoctan.traininng.androidproject.R
+import ngoctan.traininng.androidproject.databinding.ItemNativeAdBinding
 import ngoctan.traininng.androidproject.databinding.ItemNewsHomeBinding
 
-class HomeNewsAdapter: RecyclerView.Adapter<HomeNewsAdapter.ItemNewsViewHolder>() {
+class HomeNewsAdapter: RecyclerView.Adapter<ViewHolder>() {
     private var newsList = listOf<Results>()
     var onItemClick: ((Results) -> Unit)? = null
 
@@ -17,18 +23,49 @@ class HomeNewsAdapter: RecyclerView.Adapter<HomeNewsAdapter.ItemNewsViewHolder>(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemNewsViewHolder {
-        return ItemNewsViewHolder(ItemNewsHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun getItemViewType(position: Int): Int {
+        return if (position % 3 == 1 && position != 1) {
+            ResultsType.NativeAd.type
+        } else
+            ResultsType.ResultItem.type
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType) {
+            ResultsType.ResultItem.type -> {
+                val binding = (ItemNewsHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+                ItemNewsViewHolder(binding)
+            }
+
+            ResultsType.NativeAd.type -> {
+                val binding = (ItemNativeAdBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+                NativeAdViewHolder(binding)
+            }
+            else -> throw IllegalArgumentException("Invalid view type")
+
+        }
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (newsList.isNotEmpty()) {
+            val results = newsList[position]
+
+            when (holder.itemViewType) {
+                ResultsType.ResultItem.type -> {
+                    (holder as ItemNewsViewHolder).bind(results)
+                }
+
+                ResultsType.NativeAd.type -> {
+                    (holder as NativeAdViewHolder).loadNativeAd()
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int = newsList.size
 
-    override fun onBindViewHolder(holder: ItemNewsViewHolder, position: Int) {
-        val results = newsList[position]
-        holder.bind(results)
-    }
-
-    inner class ItemNewsViewHolder(private val binding: ItemNewsHomeBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ItemNewsViewHolder(private val binding: ItemNewsHomeBinding): ViewHolder(binding.root) {
         fun bind(results: Results) {
             binding.shapeIvNews.load(results.imageUrl) {
                 crossfade(true)
@@ -47,6 +84,18 @@ class HomeNewsAdapter: RecyclerView.Adapter<HomeNewsAdapter.ItemNewsViewHolder>(
             itemView.setOnClickListener {
                 onItemClick?.invoke(results)
             }
+        }
+    }
+
+    class NativeAdViewHolder(private val binding: ItemNativeAdBinding): ViewHolder(binding.root) {
+        fun loadNativeAd() {
+            val adLoader = AdLoader.Builder(itemView.context, itemView.context.getString(R.string.test_native_ad))
+                .forNativeAd { nativeAd ->
+                    binding.adHeadline.text = nativeAd.headline
+                    binding.nativeAdView.setNativeAd(nativeAd)
+                }.build()
+
+            adLoader.loadAd(AdRequest.Builder().build())
         }
     }
 }

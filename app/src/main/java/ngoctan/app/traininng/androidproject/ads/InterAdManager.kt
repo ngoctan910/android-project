@@ -1,5 +1,6 @@
 package ngoctan.app.traininng.androidproject.ads
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import com.google.android.gms.ads.AdRequest
@@ -7,13 +8,12 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import ngoctan.app.traininng.androidproject.app.MainApplication
-import ngoctan.app.traininng.androidproject.app.MainApplication.Companion
 import ngoctan.app.traininng.androidproject.util.extension.Logger
 import ngoctan.traininng.androidproject.R
 import java.lang.ref.WeakReference
 
 class InterAdManager(private val context: Context) {
-    private var mInterstitialAd: InterstitialAd? = null
+    private lateinit var mInterstitialAd: InterstitialAd
 
     fun loadInterAd() {
         val adRequest = AdRequest.Builder().build()
@@ -40,10 +40,10 @@ class InterAdManager(private val context: Context) {
     companion object {
         private var instance = WeakReference<InterAdManager>(null)
 
+        @SuppressLint("SuspiciousIndentation")
         fun getInstance(): InterAdManager {
             if (instance.get() == null) instance = WeakReference(InterAdManager(MainApplication.getInstance()))
                 return instance.get()!!
-
         }
     }
 }

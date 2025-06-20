@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ngoctan.traininng.androidproject.databinding.FragmentHomeBinding
@@ -17,6 +21,7 @@ class HomeFragment: Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var newsAdapter: HomeNewsAdapter
+    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,8 +54,10 @@ class HomeFragment: Fragment() {
     private fun initObserves() {
         lifecycleScope.launch {
             viewModel.uiState.collect { newsState ->
-                newsState.news?.results?.let { newsAdapter.submitList(it) }
+                newsState.resultList.let { newsAdapter.submitList(it) }
             }
         }
     }
+
+
 }

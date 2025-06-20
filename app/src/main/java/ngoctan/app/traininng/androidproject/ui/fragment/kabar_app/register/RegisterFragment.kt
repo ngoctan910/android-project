@@ -41,9 +41,9 @@ class RegisterFragment: Fragment() {
             registerViewModel.register(edtUsername, edtPassword)
         }
 
-        binding.login.setOnClickListener {
+        /*binding.login.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_register_to_fragment_login)
-        }
+        }*/
 
         initObserve()
 

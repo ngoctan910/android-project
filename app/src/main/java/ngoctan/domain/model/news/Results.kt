@@ -11,5 +11,6 @@ data class Results(
     val pubDate: String? = null,
     val link: String? = null,
     val country: List<String>? = null,
-    val category: List<String>? = null
+    val category: List<String>? = null,
+    val type: Int = ResultsType.ResultItem.type
 ): Parcelable

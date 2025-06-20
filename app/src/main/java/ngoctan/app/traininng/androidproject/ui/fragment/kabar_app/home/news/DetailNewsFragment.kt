@@ -17,6 +17,7 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import ngoctan.app.traininng.androidproject.ads.InterAdManager
 import ngoctan.app.traininng.androidproject.util.extension.Constant
 import ngoctan.domain.model.news.Results
+import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.FragmentDetailNewsBinding
 
 class DetailNewsFragment: Fragment() {
@@ -37,7 +38,8 @@ class DetailNewsFragment: Fragment() {
         loadAd()
         onBackPressed()
 
-        val adLoader = AdLoader.Builder(requireContext(), "ca-app-pub-3940256099942544/2247696110}")
+        val adLoader = AdLoader.Builder(requireContext(), requireContext().getString(R.string.test_native_ad)
+        )
             .forNativeAd { nativeAd ->
 
             }
@@ -48,7 +50,7 @@ class DetailNewsFragment: Fragment() {
             })
             .withNativeAdOptions(NativeAdOptions.Builder().build())
             .withAdListener(object : AdListener() {
-                // AdListener callbacks can be overridden here.
+
             })
             .build()
 
