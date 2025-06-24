@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.api.load
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
+import ngoctan.app.traininng.androidproject.ads.AdsManager
 import ngoctan.app.traininng.androidproject.util.extension.Logger
 import ngoctan.domain.model.news.Results
 import ngoctan.domain.model.news.ResultsType
@@ -89,13 +90,7 @@ class HomeNewsAdapter: RecyclerView.Adapter<ViewHolder>() {
 
     class NativeAdViewHolder(private val binding: ItemNativeAdBinding): ViewHolder(binding.root) {
         fun loadNativeAd() {
-            val adLoader = AdLoader.Builder(itemView.context, itemView.context.getString(R.string.test_native_ad))
-                .forNativeAd { nativeAd ->
-                    binding.adHeadline.text = nativeAd.headline
-                    binding.nativeAdView.setNativeAd(nativeAd)
-                }.build()
-
-            adLoader.loadAd(AdRequest.Builder().build())
+            AdsManager.loadNativeAd(itemView.context)
         }
     }
 }

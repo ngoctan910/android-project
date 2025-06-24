@@ -13,7 +13,7 @@
         android:layout_height="180dp"
         android:src="@drawable/error"
         app:shapeAppearanceOverlay="@style/rounded_corner_8"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

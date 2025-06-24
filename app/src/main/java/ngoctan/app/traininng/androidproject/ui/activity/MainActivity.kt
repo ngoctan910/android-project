@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.InitializationStatus
 import dagger.hilt.android.AndroidEntryPoint
+import ngoctan.app.traininng.androidproject.ads.AdsManager
 import ngoctan.app.traininng.androidproject.ads.InterAdManager
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ActivityMainBinding
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         setUpNavigation()
         initMobileAds()
-        loadInterAd()
+        loadAds()
     }
 
     private fun initMobileAds() {
@@ -49,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadInterAd() {
-        InterAdManager.getInstance().loadInterAd()
+    private fun loadAds() {
+        AdsManager.loadInterstitialAd(this)
     }
 
     override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {

@@ -14,6 +14,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
+import ngoctan.app.traininng.androidproject.ads.AdsManager
 import ngoctan.app.traininng.androidproject.ads.InterAdManager
 import ngoctan.app.traininng.androidproject.util.extension.Constant
 import ngoctan.domain.model.news.Results
@@ -73,7 +74,7 @@ class DetailNewsFragment: Fragment() {
     private fun onBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().popBackStack()
-            InterAdManager.getInstance().showInterstitial(requireActivity())
+            AdsManager.showInterstitialAd(requireActivity())
         }
     }
 
