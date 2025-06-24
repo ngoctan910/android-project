@@ -24,7 +24,7 @@ class HomeNewsAdapter: RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position % 3 == 1 && position != 1) {
+        return if (position % 3 == 0 && position != 0) {
             ResultsType.NativeAd.type
         } else
             ResultsType.ResultItem.type
@@ -70,7 +70,7 @@ class HomeNewsAdapter: RecyclerView.Adapter<ViewHolder>() {
             binding.shapeIvNews.load(results.imageUrl) {
                 crossfade(true)
                 placeholder(R.drawable.loading)
-                error(R.drawable.news)
+                error(R.drawable.error)
             }
 
             binding.apply {

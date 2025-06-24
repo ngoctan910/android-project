@@ -26,8 +26,7 @@ class SplashKabarFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Handler(Looper.getMainLooper()).postDelayed({
-            if (isAdded)
             findNavController().navigate(R.id.action_fragment_splash_to_fragment_onboarding1)
-        }, 2000)
+        }, 3000)
     }
 }

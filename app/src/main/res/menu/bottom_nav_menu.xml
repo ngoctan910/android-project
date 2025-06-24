@@ -10,9 +10,4 @@
         android:title="Trending"
         android:icon="@drawable/explore_unclick" />
 
-    <item
-        android:id="@+id/fragment_profile"
-        android:title="Profile"
-        android:icon="@drawable/profile_unclick" />
-
 </menu>

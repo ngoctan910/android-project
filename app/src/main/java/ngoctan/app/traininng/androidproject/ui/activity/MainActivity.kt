@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setUpNavigation()
         initMobileAds()
         loadInterAd()
@@ -41,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.fragment_home,
-                R.id.fragment_trending_news,
-                R.id.fragment_profile -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.fragment_trending_news -> binding.bottomNavigation.visibility = View.VISIBLE
 
                 else -> binding.bottomNavigation.visibility = View.GONE
             }

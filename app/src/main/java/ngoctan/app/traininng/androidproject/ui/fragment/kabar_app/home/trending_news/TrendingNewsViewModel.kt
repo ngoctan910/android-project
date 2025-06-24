@@ -8,6 +8,7 @@ import ngoctan.app.traininng.androidproject.base.BaseViewModel
 import ngoctan.app.traininng.androidproject.base.UIState
 import ngoctan.domain.extension.None
 import ngoctan.domain.model.news.Results
+import ngoctan.domain.model.news.ResultsType
 import ngoctan.domain.use_case.news.TrendingNewsUseCase
 import javax.inject.Inject
 
@@ -18,7 +19,8 @@ class TrendingNewsViewModel @Inject constructor(
 
     data class TrendingNewsState (
         val newsList: List<Results>? = null,
-        val errorMessage: String = "Trending news"
+        val errorMessage: String = "Trending news",
+        val isLoading: Boolean = false
     ): UIState
 
     override fun createInitialState(): TrendingNewsState {
@@ -26,10 +28,20 @@ class TrendingNewsViewModel @Inject constructor(
     }
 
     fun fetchTrendingNewsArticles() {
+        setState { copy(isLoading = true) }
         viewModelScope.launch {
             trendingNewsUseCase(
-                success = { setState { copy(newsList = it.results) }},
-                error = { setState { copy(errorMessage = "Data not found") }},
+                success = { news ->
+                    val newsTrendingList = mutableListOf<Results>()
+                    news.results?.forEachIndexed { index, results ->
+                        newsTrendingList.add(results)
+                        if (index % 3 == 0 && index != 0)
+                            newsTrendingList.add(Results(type = ResultsType.NativeAd.type))
+                    }
+
+                    setState { copy(newsList = newsTrendingList, isLoading = false) }
+                },
+                error = { setState { copy(errorMessage = "Data not found", isLoading = false) }},
                 param = None()
             ).collect()
         }

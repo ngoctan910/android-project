@@ -19,7 +19,8 @@ class HomeViewModel @Inject constructor(
 ): BaseViewModel<HomeViewModel.NewsState>() {
     data class NewsState (
         val resultList: List<Results> = listOf(),
-        val errorMessage: String = "news app"
+        val errorMessage: String = "news app",
+        val isLoading: Boolean = false
     ): UIState
 
     override fun createInitialState(): NewsState {
@@ -27,21 +28,23 @@ class HomeViewModel @Inject constructor(
     }
 
     fun fetchNewsArticle() {
+        setState { copy(isLoading = true) }
         viewModelScope.launch {
             newsUseCase(
                 success = { news ->
                     val newList = mutableListOf<Results>()
                     news.results?.forEachIndexed { index, result->
                         newList.add(result)
-                        if (index % 3 == 1 && index != 1) {
+                        if (index % 3 == 0 && index != 0) {
                             newList.add(Results(type = ResultsType.NativeAd.type))
                         }
                     }
 
                     Logger.d("size = ${newList.size}")
 
-                    setState { copy(resultList = newList) }},
-                error = { setState { copy(errorMessage = "Data not found") }},
+                    setState { copy(resultList = newList, isLoading = false) }
+                },
+                error = { setState { copy(errorMessage = "Data not found", isLoading = false) }},
                 param = None()
             ).collect()
         }

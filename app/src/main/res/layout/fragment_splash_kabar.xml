@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_kabar"
@@ -12,4 +13,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
