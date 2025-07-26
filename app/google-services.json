@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021324303834",
+    "project_id": "login-register-firebase-e3b66",
+    "storage_bucket": "login-register-firebase-e3b66.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021324303834:android:d4461b742b3d5b641bb4e3",
+        "android_client_info": {
+          "package_name": "ngoctan.traininng.androidproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP8jYinT4nWI5nzUoLNnD1RUmszjVOsVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
