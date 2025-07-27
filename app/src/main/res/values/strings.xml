@@ -9,4 +9,7 @@
     <string name="inter_ad">ca-app-pub-6838758515020979/9906837618</string>
     <string name="native_ad">ca-app-pub-6838758515020979/5961236633</string>
     <string name="admob_id">ca-app-pub-6838758515020979~3592710708</string>
+    
+    <string name="channel_name">Notification</string>
+    <string name="channel_description">Notifi</string>
 </resources>

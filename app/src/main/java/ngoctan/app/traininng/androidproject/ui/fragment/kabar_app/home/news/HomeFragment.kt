@@ -9,12 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import ngoctan.app.traininng.androidproject.notification.Notification
 import ngoctan.traininng.androidproject.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint
@@ -44,6 +41,7 @@ class HomeFragment: Fragment() {
         binding.recycleView.adapter = newsAdapter
         newsAdapter.onItemClick = { result ->
             findNavController().navigate(HomeFragmentDirections.actionFragmentHomeToFragmentDetailNews(result))
+            Notification.createFirstNotification(requireContext(), result)
         }
     }
 

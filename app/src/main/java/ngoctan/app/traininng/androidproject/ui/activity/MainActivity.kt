@@ -1,23 +1,30 @@
 package ngoctan.app.traininng.androidproject.ui.activity
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.window.OnBackInvokedDispatcher
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.InitializationStatus
 import dagger.hilt.android.AndroidEntryPoint
 import ngoctan.app.traininng.androidproject.ads.AdsManager
-import ngoctan.app.traininng.androidproject.ads.InterAdManager
+import ngoctan.app.traininng.androidproject.notification.Notification
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ActivityMainBinding
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val requestNotificationLauncher =
+        registerForActivityResult(RequestPermission()) { isGranted: Boolean ->
+
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setUpNavigation()
         initMobileAds()
         loadAds()
+        checkRequestNotificationPermission()
+        Notification.createNotificationChannel(this)
     }
 
     private fun initMobileAds() {
@@ -56,5 +65,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
         return super.getOnBackInvokedDispatcher()
+    }
+
+    private fun checkRequestNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestNotificationLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 }

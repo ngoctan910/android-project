@@ -98,4 +98,6 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.analytics)
     implementation(libs.play.services.ads)
+    // Notification
+    implementation(libs.androidx.core.ktx)
 }
