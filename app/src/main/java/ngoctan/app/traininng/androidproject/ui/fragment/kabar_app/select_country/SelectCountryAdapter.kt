@@ -3,7 +3,7 @@ package ngoctan.app.traininng.androidproject.ui.fragment.kabar_app.select_countr
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import ngoctan.domain.model.select_country.SelectCountry
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ItemCountryBinding

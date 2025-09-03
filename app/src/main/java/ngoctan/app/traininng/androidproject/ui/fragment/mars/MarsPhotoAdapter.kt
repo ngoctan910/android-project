@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import ngoctan.domain.model.mars_photo.MarsPhoto
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ItemMarsBinding

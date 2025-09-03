@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import coil.api.load
-import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
+import coil.load
 import ngoctan.app.traininng.androidproject.ads.AdsManager
 import ngoctan.domain.model.news.Results
 import ngoctan.domain.model.news.ResultsType

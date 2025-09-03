@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.hilt.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -100,4 +101,11 @@ dependencies {
     implementation(libs.play.services.ads)
     // Notification
     implementation(libs.androidx.core.ktx)
+    // Coil
+    implementation("io.coil-kt:coil:2.4.0")
+    // Work manager\
+    implementation("androidx.work:work-runtime-ktx:2.10.3")
+    // Hilt
+    implementation("androidx.hilt:hilt-work:1.2.0") // Check for the latest version
+    ksp("androidx.hilt:hilt-compiler:1.2.0")    // Check for the latest version
 }
