@@ -44,6 +44,7 @@ class HomeFragment: Fragment() {
         callAPIs()
         initObserves()
         startWorker()
+
     }
 
     private fun initView() {
@@ -83,7 +84,5 @@ class HomeFragment: Fragment() {
 
         WorkManager.getInstance(requireContext()).enqueue(periodicRequest)
     }
-
-
 
 }

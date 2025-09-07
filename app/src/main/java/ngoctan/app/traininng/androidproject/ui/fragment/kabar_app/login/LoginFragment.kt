@@ -10,10 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ngoctan.app.traininng.androidproject.app.MainApplication
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.FragmentLoginKabarBinding
 

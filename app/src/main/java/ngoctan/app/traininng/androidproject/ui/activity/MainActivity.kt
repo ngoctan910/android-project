@@ -19,8 +19,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.InitializationStatus
 import dagger.hilt.android.AndroidEntryPoint
 import ngoctan.app.traininng.androidproject.ads.AdsManager
-import ngoctan.app.traininng.androidproject.notification.Notification
-import ngoctan.traininng.androidproject.R
+import ngoctan.app.traininng.androidproject.notification.Notification import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
@@ -43,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         checkPermission()
         checkRequestNotificationPermission()
         Notification.createNotificationChannel(this)
+
     }
 
     override fun onRequestPermissionsResult(
@@ -127,4 +127,5 @@ class MainActivity : AppCompatActivity() {
             requestNotificationLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
+
 }

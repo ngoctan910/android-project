@@ -12,7 +12,7 @@
         android:layout_height="96dp"
         app:shapeAppearanceOverlay="@style/rounded_corner_8"
         android:scaleType="fitCenter"
-        android:src="@drawable/error"
+        android:src="@drawable/loading"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

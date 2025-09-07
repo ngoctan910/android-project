@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import ngoctan.app.traininng.androidproject.ads.AdsManager
 import ngoctan.traininng.androidproject.R
 import ngoctan.traininng.androidproject.databinding.FragmentOnboarding1KabarBinding
+import com.google.android.gms.ads.nativead.NativeAdView
 
 class OnBoarding1: Fragment() {
     private lateinit var binding: FragmentOnboarding1KabarBinding
+    private var nativeAdView: NativeAdView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,5 +30,11 @@ class OnBoarding1: Fragment() {
 
             findNavController().navigate(R.id.action_fragment_onboarding1_to_fragment_onboarding2)
         }
+
+        showNativeAd()
+    }
+
+    fun showNativeAd() {
+        AdsManager.loadNativeAd(binding.adView.root.context)
     }
 }

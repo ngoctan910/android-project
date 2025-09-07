@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_fragment_splash_to_fragment_onboarding1"
             app:destination="@id/fragment_onboarding1" />
+        <action
+            android:id="@+id/action_fragment_splash_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
 
     <fragment
