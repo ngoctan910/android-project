@@ -13,6 +13,9 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ngoctan.app.traininng.androidproject.util.extension.Logger
 import ngoctan.traininng.androidproject.R
 
@@ -20,43 +23,45 @@ object AdsManager {
 
     var nativeAd: NativeAd? = null
     private var mInterstitialAd: InterstitialAd? = null
-    const val MAX_SHOW_INTERSTITIAL_AD = 2
-
     const val MAX_LOAD_AD_FAILED = 2
     var nativeAdLoadCount = 0
     var interAdLoadCount = 0
 
-    fun loadNativeAd(context: Context) {
-        val adLoader = AdLoader.Builder(context, context.getString(R.string.native_ad))
-            .forNativeAd { ad: NativeAd ->
-                nativeAd = ad
-            }
-            .withAdListener(object : AdListener() {
-                override fun onAdLoaded() {
-                    super.onAdLoaded()
-                    Logger.d("Native ad loaded successfully")
+    fun loadNativeAd(context: Context, onAdLoaded: ((NativeAd) -> Unit)? = null) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val adLoader = AdLoader.Builder(context, context.getString(R.string.native_ad))
+                .forNativeAd { ad: NativeAd ->
+                    nativeAd = ad
+                    onAdLoaded?.invoke(ad)
                 }
-
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    super.onAdFailedToLoad(error)
-                    Logger.d("Native ad load failed: $error")
-                    nativeAdLoadCount++
-                    if (nativeAdLoadCount < MAX_LOAD_AD_FAILED) {
-                        loadNativeAd(context)
+                .withAdListener(object : AdListener() {
+                    override fun onAdLoaded() {
+                        super.onAdLoaded()
+                        Logger.d("Native ad loaded successfully")
                     }
-                }
-            })
-            .withNativeAdOptions(NativeAdOptions.Builder()
-                .setVideoOptions(VideoOptions.Builder()
-                    .setStartMuted(true)
-                    .setClickToExpandRequested(true)
+
+                    override fun onAdFailedToLoad(error: LoadAdError) {
+                        super.onAdFailedToLoad(error)
+                        Logger.d("Native ad load failed: $error")
+                        nativeAdLoadCount++
+                        if (nativeAdLoadCount < MAX_LOAD_AD_FAILED) {
+                            loadNativeAd(context)
+                        }
+                    }
+                })
+                .withNativeAdOptions(NativeAdOptions.Builder()
+                    .setVideoOptions(VideoOptions.Builder()
+                        .setStartMuted(true)
+                        .setClickToExpandRequested(true)
+                        .build()
+                    )
                     .build()
                 )
                 .build()
-            )
-            .build()
 
-        adLoader.loadAd(AdRequest.Builder().build())
+            adLoader.loadAd(AdRequest.Builder().build())
+        }
+
     }
 
     fun loadInterstitialAd(context: Context) {
